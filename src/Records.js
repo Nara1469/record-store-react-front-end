@@ -12,9 +12,9 @@ function Records() {
 
     useEffect(() => {
         fetch("http://localhost:8080/records")
-        .then(response => response.json())
-        .then(result => setRecords(result))
-        .catch(console.log);
+            .then(response => response.json())
+            .then(result => setRecords(result))
+            .catch(console.log);
     }, []);
 
     function addClick() {
@@ -46,12 +46,17 @@ function Records() {
             case "edit-form":
                 setScopedRecord(record);
                 setShowForm(true);
-                return;
+                break;
             case "delete":
                 setRecords(records.filter(e => e.id !== record.id));
                 break;
+            default:
+                console.log("INVALID ACTION!", action);
+                console.log("also this... INVALID ACTION!" + action);
+                alert("INVALID ACTION! " + action);
+                break;
         }
-        
+
         setError("");
         setShowForm(false);
     }
